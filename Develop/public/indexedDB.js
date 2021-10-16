@@ -49,13 +49,21 @@ request.onupgradeneeded = ({ target }) => {
       if (getAll.result.length > 0) {
         fetch("/api/transaction/bulk", {
           method: "POST",
-          body: JSON.stringify(getAll.result),
-          headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json"
-          }
-        })
+          body: JSON.stringify(records.result),
+                headers: {
+                    Accept: "application/json, text/plain, */*",
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(response => response.json())
+            .then(() => { 
+                // if true-post to store/mongo
+                const transaction = db.transaction(["new_budget_sheet"], "readwrite");
+                const objStore = transaction.objectStore("new_budget_sheet");
+                objStore.clear();
+            })
+        }
+    }
+};
 
-
-
-
+window.addEventListener("online", checkDatabase);
