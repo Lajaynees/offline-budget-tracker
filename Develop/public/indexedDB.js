@@ -33,6 +33,14 @@ request.onupgradeneeded = ({ target }) => {
   function checkDatabase() {
     const transaction = db.transaction(["new_budget_sheet"], "readwrite");
     const store = transaction.objectStore("new_budget_sheet");
+     
+    // Save data
+     function saveRecord(record) {
+        const transaction = db.transaction(["new_budget_sheet"], "readwrite");
+        const store = transaction.objectStore("new_budget_sheet");
+        objStore.add(record);
+      }
+
 
 // collect all records-run function when true
     const getAll = store.getAll();
@@ -47,4 +55,7 @@ request.onupgradeneeded = ({ target }) => {
             "Content-Type": "application/json"
           }
         })
-    
+
+
+
+
