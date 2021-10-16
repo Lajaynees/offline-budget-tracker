@@ -8,9 +8,12 @@
 # License
 MIT License: MIT
 
+<<<<<<< HEAD
 #Screenshot
 Screen Shot 2021-10-15 at 9.48.51 PM
 
+=======
+>>>>>>> 8b83a24aca851559b7efa6467f917d22d6d2515a
 # Languages
 JavaScript, HTML, CSS, MongoDB
 
